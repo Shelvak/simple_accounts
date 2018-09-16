@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.3.0
+  - 2.5.1
 before_script:
   - 'cp config/app_config.example.yml config/app_config.yml'
   - "psql -c 'create database simple_accounts_test;' -U postgres"

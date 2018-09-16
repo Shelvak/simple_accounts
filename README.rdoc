@@ -1,19 +1,12 @@
 = SimpleAccounts
 
-Skeleton project
-
-All you have to do for start using it is change all the SimpleAccounts (and simple_accounts) strings
-with the name of your application...
+Simple clients account balance (just credits and debits)
 
 === Build Status {<img src="https://secure.travis-ci.org/Shelvak/simple_accounts.png"/>}[http://travis-ci.org/Shelvak/simple_accounts]
 
-=== Dependency Status {<img src="https://gemnasium.com/Shelvak/simple_accounts.png?travis"/>}[https://gemnasium.com/Shelvak/simple_accounts]
-
-=== Code Status {<img src="https://codeclimate.com/github/Shelvak/simple_accounts.png"/>}[https://codeclimate.com/github/Shelvak/simple_accounts]
-
 == (The MIT License)
 
-Copyleft (ɔ) 2017 Néstor Coppi
+Copyleft (ɔ) 2018 Néstor Coppi
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
