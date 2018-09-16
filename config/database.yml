@@ -1,0 +1,22 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: simple_accounts
+  password: simple_accounts
+  host: localhost
+  port: 5432
+
+development:
+  <<: *defaults
+  database: simple_accounts_development
+
+test:
+  <<: *defaults
+  database: simple_accounts_test
+  username: <%= ENV['TRAVIS'] ? 'postgres' : 'simple_accounts' %>
+  password: <%= ENV['TRAVIS'] ? '' : 'simple_accounts' %>
+
+production:
+  <<: *defaults
+  database: simple_accounts_production

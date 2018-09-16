@@ -1,0 +1,69 @@
+---
+es:
+  activerecord:
+    attributes:
+      user:
+        email: "Correo"
+        lastname: "Apellido"
+        name: "Nombre"
+        password: "Contraseña"
+        password_confirmation: "Confirmación"
+        remember_me: "Recordarme"
+        role: "Perfil"
+        roles:
+          one: "Perfil"
+          other: "Perfiles"
+    models:
+      user:
+        one: "Usuario"
+        other: "Usuarios"
+  app_name: "SimpleAccounts"
+  attributes:
+    created_at: "Creación"
+    updated_at: "Actualización"
+  errors:
+    access_denied: "No tiene permisos para acceder al contenido"
+    title: "Error"
+  label:
+    close: "Cerrar"
+    delete: "Eliminar"
+    destroy: "Eliminar"
+    edit: "Editar"
+    list: "Listado"
+    loading: "Cargando..."
+    new: "Nuevo"
+    "no": "No"
+    search: "Buscar"
+    show: "Ver"
+    "yes": "Si"
+  menu:
+    actions:
+      logout: "Salir de la aplicación"
+    users: "Usuarios"
+  messages:
+    confirmation: "¿Está seguro?"
+  view:
+    generic:
+      empty_index:
+        html: "No hay ningún elemento por el momento"
+      empty_search:
+        title:
+          html: "La búsqueda de <span class=\"label label-inverse\">%{search}</span> no obtuvo ningún resultado."
+    users:
+      correctly_created: "Usuario agregado correctamente."
+      correctly_updated: "Usuario actualizado correctamente."
+      edit_profile: "Editar perfil"
+      edit_title: "Modificar usuario"
+      empty_index:
+        html: 'No se ha creado ningún usuario hasta el momento, si quiere puede hacerlo desde el botón <span class="label label-info">Nuevo usuario</span>'
+      index_title: "Listado de usuarios"
+      new: "Nuevo usuario"
+      new_title: "Nuevo usuario"
+      profile_correctly_updated: "Actualizaste tus datos correctamente."
+      roles:
+        admin: "Administrador"
+        regular: "Normal"
+      show_title: "Detalle de usuario"
+      stale_object_error: "El usuario no pudo ser actualizado, intente nuevamente."
+      update_password: "Actualizar contraseña"
+      update_profile: "Actualizar datos"
