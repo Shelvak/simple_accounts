@@ -17,9 +17,11 @@
 //= require jquery-customs/jquery-ui-timepicker-addon
 //= require bootstrap
 //= require underscore
+//= require sweetalert2
 //
 //= require autocomplete
 //= require dynamic_form
 //= require helpers
 //= require common
 //= require users
+//= require movements

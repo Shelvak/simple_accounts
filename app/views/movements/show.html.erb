@@ -1,0 +1,23 @@
+<h2><%= @movement %></h2>
+
+<p>
+  <strong><%= Movement.human_attribute_name 'client' %></strong>:
+  <%= @movement.client %>
+</p>
+<p>
+  <strong><%= Movement.human_attribute_name 'amount' %></strong>:
+  <%= @movement.amount %>
+</p>
+<p>
+  <strong><%= Movement.human_attribute_name 'kind' %></strong>:
+  <%= @movement.kind %>
+</p>
+<p>
+  <strong><%= Movement.human_attribute_name 'user' %></strong>:
+  <%= @movement.user %>
+</p>
+
+<div class="panel-footer">
+  <%= link_to t('label.edit'), edit_movement_path(@movement) if can? :update, @movement %> |
+  <%= link_to t('label.list'), movements_path %>
+</div>

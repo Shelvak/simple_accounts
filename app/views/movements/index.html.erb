@@ -1,0 +1,43 @@
+<div class="well">
+  <%= link_to 'Debito', clients_path, class: 'manso-modal', data: { add_movement_to_client: 'credit' } %>
+  <%= link_to 'Credito', '#', class: 'manso-modal' %>
+</div>
+
+<% if @movements.empty? %>
+  <%= render 'shared/empty_index' %>
+<% else %>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th><%= Movement.human_attribute_name 'client' %></th>
+        <th><%= Movement.human_attribute_name 'amount' %></th>
+        <th><%= Movement.human_attribute_name 'kind' %></th>
+        <th><%= Movement.human_attribute_name 'user' %></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @movements.each do |movement| %>
+        <tr>
+          <td><%= movement.client %></td>
+          <td><%= movement.amount %></td>
+          <td><%= movement.kind %></td>
+          <td><%= movement.user %></td>
+          <td><%= link_to_show movement %></td>
+          <td><%# = link_to_edit edit_movement_path(movement) if can? :update, movement %></td>
+          <td><%# = link_to_destroy movement if can? :destroy, movement %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @movements %>
+<% end %>
+
+<div class="panel-footer">
+  <%= link_to(
+    t('view.movements.new', default: :'label.new'),
+    new_movement_path, class: 'btn btn-primary'
+  ) if can? :create, Movement %>
+</div>

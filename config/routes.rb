@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :movements
   resources :clients
   require 'sidekiq/web'
 

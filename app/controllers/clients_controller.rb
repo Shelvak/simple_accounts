@@ -5,6 +5,11 @@ class ClientsController < ApplicationController
   def index
     @title = t('view.clients.index_title')
     @clients = Client.all.page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @clients }
+    end
   end
 
   # GET /clients/1
