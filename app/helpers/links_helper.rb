@@ -14,7 +14,7 @@ module LinksHelper
   end
 
   def link_to_edit *args
-    link_with_icon({ action: 'edit', icon: 'fa-pencil' }, *args)
+    link_with_icon({ action: 'edit', icon: 'fa-pencil-alt' }, *args)
   end
 
   private

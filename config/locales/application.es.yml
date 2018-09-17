@@ -13,7 +13,14 @@ es:
         roles:
           one: "Perfil"
           other: "Perfiles"
+      client:
+        name: "Nombre"
+        identifier: "Identificador DNI / Legajo"
+        card: "Tarjeta magnética"
     models:
+      client:
+        one: "Cliente"
+        other: "Clientes"
       user:
         one: "Usuario"
         other: "Usuarios"
@@ -49,6 +56,17 @@ es:
       empty_search:
         title:
           html: "La búsqueda de <span class=\"label label-inverse\">%{search}</span> no obtuvo ningún resultado."
+    clients:
+      correctly_created: "Cliente agregado correctamente."
+      correctly_updated: "Cliente actualizado correctamente."
+      edit_title: "Modificar cliente"
+      empty_index:
+        html: 'No se ha creado ningún cliente hasta el momento, si quiere puede hacerlo desde el botón <span class="label label-info">Nuevo cliente</span>'
+      index_title: "Listado de clientes"
+      new: "Nuevo cliente"
+      new_title: "Nuevo cliente"
+      show_title: "Detalle de cliente"
+      stale_object_error: "El cliente no pudo ser actualizado, intente nuevamente."
     users:
       correctly_created: "Usuario agregado correctamente."
       correctly_updated: "Usuario actualizado correctamente."
