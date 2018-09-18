@@ -30,12 +30,13 @@ gem 'font-awesome-sass'
 gem 'interactive_editor'
 gem 'awesome_print'
 
+gem 'thin'
+
 group :development, :test do
   gem 'byebug'
 end
 
 group :development do
-  gem 'thin'
   gem 'web-console', '~> 2.0'
   gem 'listen'
 

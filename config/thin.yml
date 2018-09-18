@@ -1,0 +1,13 @@
+chdir: "/home/rotsen/git/simple_accounts"
+environment: production
+address: 0.0.0.0
+port: 4000
+timeout:
+log: "/home/rotsen/git/simple_accounts/log/thin.log"
+pid: tmp/pids/thin.pid
+max_conns: 1024
+max_persistent_conns: 100
+require: []
+wait: 30
+threadpool_size: 10
+daemonize: true

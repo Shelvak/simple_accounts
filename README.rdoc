@@ -4,6 +4,9 @@ Simple clients account balance (just credits and debits)
 
 === Build Status {<img src="https://secure.travis-ci.org/Shelvak/simple_accounts.png"/>}[http://travis-ci.org/Shelvak/simple_accounts]
 
+# Note
+VirtualBox passwd => 321qwedsa
+
 == (The MIT License)
 
 Copyleft (ɔ) 2018 Néstor Coppi
