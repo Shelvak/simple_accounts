@@ -1,20 +1,26 @@
-<h2><%= @movement %></h2>
-
 <p>
   <strong><%= Movement.human_attribute_name 'client' %></strong>:
   <%= @movement.client %>
 </p>
 <p>
   <strong><%= Movement.human_attribute_name 'amount' %></strong>:
-  <%= @movement.amount %>
+  <%= number_to_currency @movement.amount %>
 </p>
 <p>
   <strong><%= Movement.human_attribute_name 'kind' %></strong>:
-  <%= @movement.kind %>
+  <%= movement_kinds_translation @movement.kind %>
 </p>
 <p>
   <strong><%= Movement.human_attribute_name 'user' %></strong>:
   <%= @movement.user %>
+</p>
+<p>
+  <strong><%= Movement.human_attribute_name 'updated_at' %></strong>:
+  <%= l @movement.updated_at, format: :long %>
+</p>
+<p>
+  <strong><%= Movement.human_attribute_name 'created_at' %></strong>:
+  <%= l @movement.created_at, format: :long %>
 </p>
 
 <div class="panel-footer">

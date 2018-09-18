@@ -17,7 +17,15 @@ es:
         name: "Nombre"
         identifier: "Identificador DNI / Legajo"
         card: "Tarjeta magnética"
+      movement:
+        client_id: 'Cliente'
+        amount: 'Monto'
+        kind: 'Tipo'
+        user_id: 'Usuario'
     models:
+      movement:
+        one: "Movimiento"
+        other: "Movimientos"
       client:
         one: "Cliente"
         other: "Clientes"
@@ -50,7 +58,25 @@ es:
   messages:
     confirmation: "¿Está seguro?"
   view:
+    movements:
+      future_amount:
+        credit: "Quedarán a favor $"
+        debit: "Quedarán adeudados $"
+      kinds:
+        debit: 'Débito'
+        credit: 'Crédito'
+      correctly_created: "Movimiento agregado correctamente."
+      correctly_updated: "Movimiento actualizado correctamente."
+      edit_title: "Modificar moviemiento"
+      empty_index:
+        html: 'No se ha creado ningún moviemiento hasta el momento'
+      index_title: "Listado de moviemientos"
+      new: "Nuevo moviemiento"
+      new_title: "Nuevo moviemiento"
+      show_title: "Detalle de moviemiento"
+      stale_object_error: "El moviemiento no pudo ser actualizado, intente nuevamente."
     generic:
+      filtered_by: "Filtrado por: %{field}"
       empty_index:
         html: "No hay ningún elemento por el momento"
       empty_search:

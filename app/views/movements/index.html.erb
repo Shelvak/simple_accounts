@@ -1,7 +1,10 @@
-<div class="well">
-  <%= link_to 'Debito', clients_path, class: 'manso-modal', data: { add_movement_to_client: 'credit' } %>
-  <%= link_to 'Credito', '#', class: 'manso-modal' %>
+<div class="well text-center">
+  <%= link_to 'Acreditar cliente', clients_path, class: 'btn btn-primary manso-modal', data: { add_movement_to_client: 'credit' } %>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to 'Debitar cliente', clients_path, class: 'btn btn-primary manso-modal', data: { add_movement_to_client: 'debit' } %>
 </div>
+
+<%= show_filtered_by(klass: Movement, fields: @filters.keys) %>
 
 <% if @movements.empty? %>
   <%= render 'shared/empty_index' %>
@@ -9,10 +12,10 @@
   <table class="table table-striped table-hover">
     <thead>
       <tr>
-        <th><%= Movement.human_attribute_name 'client' %></th>
+        <th><%= Movement.human_attribute_name 'client_id' %></th>
         <th><%= Movement.human_attribute_name 'amount' %></th>
         <th><%= Movement.human_attribute_name 'kind' %></th>
-        <th><%= Movement.human_attribute_name 'user' %></th>
+        <th><%= Movement.human_attribute_name 'user_id' %></th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -20,13 +23,13 @@
     <tbody>
       <% @movements.each do |movement| %>
         <tr>
-          <td><%= movement.client %></td>
-          <td><%= movement.amount %></td>
-          <td><%= movement.kind %></td>
-          <td><%= movement.user %></td>
+          <td><%= link_to movement.client, movements_path(query_params.merge(client_id: movement.client_id)) %></td>
+          <td><%= number_to_currency movement.amount %></td>
+          <td><%= movement_kinds_translation(movement.kind) %></td>
+          <td><%= link_to movement.user, movements_path(query_params.merge(user_id: movement.user_id)) %></td>
           <td><%= link_to_show movement %></td>
-          <td><%# = link_to_edit edit_movement_path(movement) if can? :update, movement %></td>
-          <td><%# = link_to_destroy movement if can? :destroy, movement %></td>
+          <td><%= link_to_edit edit_movement_path(movement) if can? :update, movement %></td>
+          <td><%= link_to_destroy movement if can? :destroy, movement %></td>
         </tr>
       <% end %>
     </tbody>
@@ -34,10 +37,3 @@
 
   <%= paginate @movements %>
 <% end %>
-
-<div class="panel-footer">
-  <%= link_to(
-    t('view.movements.new', default: :'label.new'),
-    new_movement_path, class: 'btn btn-primary'
-  ) if can? :create, Movement %>
-</div>

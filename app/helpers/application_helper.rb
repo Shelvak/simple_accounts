@@ -28,4 +28,27 @@ module ApplicationHelper
       )
     end
   end
+
+  def show_filtered_by(klass:, fields:)
+    return if fields.blank?
+
+    fields_in_list = content_tag(:ul) do
+      fields.map do |field|
+        link = [klass.human_attribute_name(field), @filters[field].to_s].join(': ')
+        link += '   '
+        link += link_to(remove_icon.html_safe, query_params.except(field))
+
+        content_tag(
+          :li,
+          link.html_safe
+        ).html_safe
+      end.join.html_safe
+    end.html_safe
+
+    t(:filtered_by, scope: [:view, :generic], field: fields_in_list).html_safe
+  end
+
+  def query_params
+    request.query_parameters
+  end
 end

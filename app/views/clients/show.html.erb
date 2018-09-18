@@ -12,8 +12,14 @@
   <strong><%= Client.human_attribute_name 'card' %></strong>:
   <%= @client.card %>
 </p>
+<p>
+  <strong><%= Client.human_attribute_name 'amount' %></strong>:
+  <%= number_to_currency @client.amount %>
+</p>
 
 <div class="panel-footer">
   <%= link_to t('label.edit'), edit_client_path(@client) if can? :update, @client %> |
   <%= link_to t('label.list'), clients_path %>
+
+  <%= link_to Movement.model_name.human(count: 0), movements_path(client_id: @client.id), class: 'pull-right' %>
 </div>

@@ -4,7 +4,20 @@ class MovementsController < ApplicationController
   # GET /movements
   def index
     @title = t('view.movements.index_title')
-    @movements = Movement.all.page(params[:page])
+    @movements = Movement.all.preload(:client, :user)
+    @filters = {}
+
+    if params[:client_id]
+      @movements = @movements.where(client_id: params[:client_id])
+      @filters[:client_id] = @movements.first&.client || Client.find(params[:client_id])
+    end
+
+    if params[:user_id]
+      @movements = @movements.where(user_id: params[:user_id])
+      @filters[:user_id] = @movements.first&.user || User.find(params[:user_id])
+    end
+
+    @movements = @movements.order(created_at: :desc).page(params[:page])
   end
 
   # GET /movements/1
@@ -26,13 +39,13 @@ class MovementsController < ApplicationController
   # POST /movements
   def create
     @title = t('view.movements.new_title')
-    @movement = Movement.new(movement_params)
+    @movement = current_user.movements.build(movement_params)
 
     respond_to do |format|
       if @movement.save
-        format.html { redirect_to @movement, notice: t('view.movements.correctly_created') }
+        format.json { render json: {}, status: :ok }
       else
-        format.html { render action: 'new' }
+        format.json { render json: {}, status: :error }
       end
     end
   end
@@ -66,6 +79,6 @@ class MovementsController < ApplicationController
   end
 
   def movement_params
-    params.require(:movement).permit(:client, :amount, :kind, :user)
+    params.require(:movement).permit(:client_id, :amount, :kind)
   end
 end
