@@ -7,6 +7,7 @@ gem 'kaminari'
 gem 'simple_form'
 gem 'paper_trail'
 gem 'validates_timeliness'
+gem 'pg_search'
 
 # Auth & Mailing Gems
 gem 'devise'

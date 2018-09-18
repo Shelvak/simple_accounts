@@ -5,8 +5,13 @@ Movements.currentClient = null
 Movements.lastClientsSearch = {}
 
 Movements.showSwalError = (msg) ->
-  swal.showValidationError(
-    msg || 'Oops hubo un problema...'
+  swal(
+    title: 'Error'
+    text: msg || 'Oops hubo un problema...'
+    type: 'error'
+    showConfirmButton: true
+    allowOutsideClick: true
+    allowEscapeKey: true
   )
 
 Movements.chooseClient = (clients) ->
@@ -45,6 +50,7 @@ Movements.askForAmount = (client) ->
     html: "<h5>Tiene $#{parseFloat(client.amount).toFixed(2)} <br /> <span class='future-amount'></span><h5>"
     input: 'number'
     inputAttributes: {
+      min: '0'
       step: '.01'
     }
     inputValidator: (value) ->
@@ -83,18 +89,13 @@ Movements.createMovementForClient = (client, amount) ->
         allowEscapeKey: true
         onClose: -> location.reload()
       )
-    error: ->
-      swal(
-        title: 'Error'
-        text: 'Oops algo salió mal'
-        type: 'error'
-        showConfirmButton: true
-        allowOutsideClick: true
-        allowEscapeKey: true
-      )
+    error: Movements.showSwalError
   )
 
 Movements.searchClient = (query) ->
+  if query.length == 0
+    return []
+
   $.get(
     url: '/clients'
     data: { q: query }

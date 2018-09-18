@@ -17,6 +17,7 @@ es:
         name: "Nombre"
         identifier: "Identificador DNI / Legajo"
         card: "Tarjeta magnética"
+        amount: 'Cuenta corriente'
       movement:
         client_id: 'Cliente'
         amount: 'Monto'

@@ -1,10 +1,22 @@
 class Client < ApplicationModel
+  include PgSearch
+
   has_paper_trail
+
+  pg_search_scope :search_full_text, against: [:name, :identifier]
+  pg_search_scope :unicode_search, against: [:name, :identifier],
+    ignoring: :accents,
+    using: {
+      tsearch: { prefix: false },
+      trigram: { threshold: 0.1 }
+    }
 
   validates :name, :identifier, presence: true
   validates :identifier, :card, uniqueness: true
 
   has_many :movements
+
+  before_save :strip_fields
 
   def to_s
     name
@@ -25,4 +37,9 @@ class Client < ApplicationModel
       (movements.debit.sum(:amount) || 0.0)
   end
 
+  def strip_fields
+    self.name = self.name.strip if name
+    self.identifier = self.identifier.strip if identifier
+    self.card = self.card.strip if card
+  end
 end

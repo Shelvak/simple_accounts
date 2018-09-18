@@ -4,7 +4,21 @@ class ClientsController < ApplicationController
   # GET /clients
   def index
     @title = t('view.clients.index_title')
-    @clients = Client.all.page(params[:page])
+    @clients = Client.all
+
+    if (query = params[:q]&.strip).present?
+      # Primero buscamos por tarjeta
+      clients = @clients.where(card: query)
+      @clients = if clients.count == 1
+                   client
+                 else
+                   @clients.unicode_search(query)
+                 end
+
+      # Si no hay o hay mas de 1 buscamos en todos
+    end
+
+    @clients = @clients.page(params[:page])
 
     respond_to do |format|
       format.html
