@@ -26,22 +26,7 @@
     </thead>
 
     <tbody>
-      <% @clients.each do |client| %>
-        <tr>
-          <td><%= client.name %></td>
-          <td><%= client.identifier %></td>
-          <td><%= number_to_currency client.amount %></td>
-          <td><%= link_to 'Ver saldo', client, class: 'btn btn-success btn-xs' %></td>
-          <td><%= link_to 'Sumar saldo',
-            clients_path,
-            class: 'btn btn-primary btn-xs',
-            data: { add_movement_to_client: 'credit', client: client.to_json } %></td>
-          <td><%= link_to 'Restar saldo',
-            clients_path,
-            class: 'btn btn-danger btn-xs',
-            data: { add_movement_to_client: 'debit', client: client.to_json } %></td>
-        </tr>
-      <% end %>
+      <%= render @clients %>
     </tbody>
   </table>
 

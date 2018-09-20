@@ -78,7 +78,7 @@ Movements.createMovementForClient = (client, amount) ->
       }
     }
     dataType: 'JSON'
-    success: ->
+    success: (response) ->
       swal(
         title: 'Exito'
         text: 'El movimiento se cargo correctamente'
@@ -87,8 +87,8 @@ Movements.createMovementForClient = (client, amount) ->
         showConfirmButton: true
         allowOutsideClick: true
         allowEscapeKey: true
-        onClose: -> location.reload()
       )
+      $("##{response.id}").replaceWith(response.row)
     error: Movements.showSwalError
   )
 

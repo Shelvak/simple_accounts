@@ -41,9 +41,13 @@ class MovementsController < ApplicationController
     @title = t('view.movements.new_title')
     @movement = current_user.movements.build(movement_params)
 
+
     respond_to do |format|
       if @movement.save
-        format.json { render json: {}, status: :ok }
+        format.json { render json: {
+          row: render_to_string(partial: 'clients/client', locals: { client: @movement.client }, formats: [:html]),
+          id: @movement.client_id
+        } }
         format.html { redirect_to @movement, notice: t('view.movements.correctly_created') }
       else
         format.json { render json: {}, status: :error }
