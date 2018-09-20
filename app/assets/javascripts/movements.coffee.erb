@@ -58,10 +58,13 @@ Movements.createMovementForClient = (client, amount) ->
         showConfirmButton: true
         allowOutsideClick: true
         allowEscapeKey: true
+        onClose: ->
+          $("tr##{response.id}").effect("highlight", {color: '#bce8f1'}, 2500)
       )
       Movements.currentMovementKind = null
       Movements.currentClient = null
-      $("##{response.id}").replaceWith(response.row)
+      $("tr##{response.id}").replaceWith(response.row)
+
     error: Movements.showSwalError
   )
 
