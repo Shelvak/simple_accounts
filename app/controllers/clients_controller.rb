@@ -10,7 +10,7 @@ class ClientsController < ApplicationController
       # Primero buscamos por tarjeta
       clients = @clients.where(card: query)
       @clients = if clients.count == 1
-                   client
+                   clients
                  else
                    @clients.unicode_search(query)
                  end
@@ -18,7 +18,7 @@ class ClientsController < ApplicationController
       # Si no hay o hay mas de 1 buscamos en todos
     end
 
-    @clients = @clients.page(params[:page])
+    @clients = @clients.includes(:movements).page(params[:page])
 
     respond_to do |format|
       format.html

@@ -6,6 +6,8 @@ Simple clients account balance (just credits and debits)
 
 # Note
 VirtualBox passwd => 321qwedsa
+"C:\VirtualBox\VBoxManage.exe" startvm"simple_accounts"
+"C:\VirtualBox\VBoxManage.exe" controlvm "simple_accounts" poweroff
 
 == (The MIT License)
 

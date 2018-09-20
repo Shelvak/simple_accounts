@@ -1,9 +1,3 @@
-<div class="well text-center">
-  <%= link_to 'Acreditar cliente', clients_path, class: 'btn btn-primary manso-modal', data: { add_movement_to_client: 'credit' } %>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to 'Debitar cliente', clients_path, class: 'btn btn-primary manso-modal', data: { add_movement_to_client: 'debit' } %>
-</div>
-
 <%= show_filtered_by(klass: Movement, fields: @filters.keys) %>
 
 <% if @movements.empty? %>

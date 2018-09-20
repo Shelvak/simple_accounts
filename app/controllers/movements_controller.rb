@@ -28,7 +28,7 @@ class MovementsController < ApplicationController
   # GET /movements/new
   def new
     @title = t('view.movements.new_title')
-    @movement = Movement.new
+    @movement = Client.find(params[:client_id]).movements.build
   end
 
   # GET /movements/1/edit
@@ -44,8 +44,10 @@ class MovementsController < ApplicationController
     respond_to do |format|
       if @movement.save
         format.json { render json: {}, status: :ok }
+        format.html { redirect_to @movement, notice: t('view.movements.correctly_created') }
       else
         format.json { render json: {}, status: :error }
+        format.html { render action: 'new' }
       end
     end
   end

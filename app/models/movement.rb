@@ -3,6 +3,6 @@ class Movement < ApplicationModel
 
   enum kind: %i[credit debit]
 
-  belongs_to :client
-  belongs_to :user
+  belongs_to :client, optional: false
+  belongs_to :user, optional: false
 end

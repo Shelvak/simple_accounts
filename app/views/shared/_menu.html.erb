@@ -20,7 +20,7 @@
         <%= menu_item_for Movement, movements_path if can?(:read, Movement) %>
       </ul>
 
-      <%= render partial: 'shared/nav_search' %>
+      <%= render partial: 'shared/nav_search' if @searchable %>
       <%= render partial: 'shared/user_actions' %>
     </nav>
   <% end %>

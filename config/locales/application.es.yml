@@ -64,10 +64,11 @@ es:
         credit: "Quedarán a favor $"
         debit: "Quedarán adeudados $"
       kinds:
-        debit: 'Débito'
-        credit: 'Crédito'
+        debit: 'Restar Saldo'
+        credit: 'Agregar Saldo'
       correctly_created: "Movimiento agregado correctamente."
       correctly_updated: "Movimiento actualizado correctamente."
+      correctly_destroyed: "Movimiento eliminado correctamente."
       edit_title: "Modificar moviemiento"
       empty_index:
         html: 'No se ha creado ningún moviemiento hasta el momento'
@@ -86,6 +87,7 @@ es:
     clients:
       correctly_created: "Cliente agregado correctamente."
       correctly_updated: "Cliente actualizado correctamente."
+      correctly_destroyed: "Cliente eliminado correctamente."
       edit_title: "Modificar cliente"
       empty_index:
         html: 'No se ha creado ningún cliente hasta el momento, si quiere puede hacerlo desde el botón <span class="label label-info">Nuevo cliente</span>'

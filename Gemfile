@@ -25,6 +25,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'underscore-rails'
 gem 'font-awesome-sass'
+gem 'kaminari-bootstrap3'
 
 # Helpers (at console)
 gem 'interactive_editor'

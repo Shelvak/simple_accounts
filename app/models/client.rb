@@ -12,9 +12,10 @@ class Client < ApplicationModel
     }
 
   validates :name, :identifier, presence: true
-  validates :identifier, :card, uniqueness: true
+  validates :identifier, uniqueness: true
+  validates :card, uniqueness: true, allow_blank: true, allow_nil: true
 
-  has_many :movements
+  has_many :movements, dependent: :destroy
 
   before_save :strip_fields
 

@@ -1,3 +1,17 @@
+<div class="well text-center">
+  <%= form_for :search, method: :get, html: { class: 'form-horizontal' } do |f| %>
+    <div class="row">
+      <div class="col-md-4">
+
+        <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: t('label.search') %>
+      </div>
+      <div class="col-md-2">
+        <%= submit_tag 'Buscar cliente', class: 'btn btn-warning' %>
+      </div>
+    </div>
+<% end %>
+</div>
+
 <% if @clients.empty? %>
   <%= render 'shared/empty_index' %>
 <% else %>
@@ -6,6 +20,7 @@
       <tr>
         <th><%= Client.human_attribute_name 'name' %></th>
         <th><%= Client.human_attribute_name 'identifier' %></th>
+        <th><%= Client.human_attribute_name 'amount' %></th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -15,9 +30,16 @@
         <tr>
           <td><%= client.name %></td>
           <td><%= client.identifier %></td>
-          <td><%= link_to_show client %></td>
-          <td><%= link_to_edit edit_client_path(client) if can? :update, client %></td>
-          <td><%= link_to_destroy client if can? :destroy, client %></td>
+          <td><%= number_to_currency client.amount %></td>
+          <td><%= link_to 'Ver saldo', client, class: 'btn btn-success btn-xs' %></td>
+          <td><%= link_to 'Sumar saldo',
+            clients_path,
+            class: 'btn btn-primary btn-xs',
+            data: { add_movement_to_client: 'credit', client: client.to_json } %></td>
+          <td><%= link_to 'Restar saldo',
+            clients_path,
+            class: 'btn btn-danger btn-xs',
+            data: { add_movement_to_client: 'debit', client: client.to_json } %></td>
         </tr>
       <% end %>
     </tbody>
