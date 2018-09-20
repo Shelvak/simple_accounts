@@ -3,6 +3,13 @@ window.Movements ||= {}
 Movements.currentMovementKind = null
 Movements.currentClient = null
 
+Movements.focusin = ->
+  setTimeout(
+    ->
+      $('#q').focus()
+    , 1000
+  )
+
 Movements.showSwalError = (msg) ->
   swal(
     title: 'Error'
@@ -11,6 +18,7 @@ Movements.showSwalError = (msg) ->
     showConfirmButton: true
     allowOutsideClick: true
     allowEscapeKey: true
+    onClose: Movements.focusin
   )
 
 Movements.askForAmount = (client) ->
@@ -23,6 +31,7 @@ Movements.askForAmount = (client) ->
     inputAttributes: {
       min: '0'
       step: '.01'
+      autofocus: true
     }
     inputValidator: (value) ->
       if parseFloat(value) <= 0
@@ -31,10 +40,13 @@ Movements.askForAmount = (client) ->
     inputClass: 'movement-amount-field'
     allowEscapeKey: true
     allowOutsideClick: true
+    onClose: Movements.focusin
   ).then(
     (result) ->
       if result && result.value
         Movements.createMovementForClient(client, result.value)
+      else
+        Movements.focusin()
   )
 
 Movements.createMovementForClient = (client, amount) ->
@@ -60,6 +72,7 @@ Movements.createMovementForClient = (client, amount) ->
         allowEscapeKey: true
         onClose: ->
           $("tr##{response.id}").effect("highlight", {color: '#bce8f1'}, 2500)
+          Movements.focusin()
       )
       Movements.currentMovementKind = null
       Movements.currentClient = null
