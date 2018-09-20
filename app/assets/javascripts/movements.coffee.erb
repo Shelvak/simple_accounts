@@ -2,7 +2,6 @@ window.Movements ||= {}
 
 Movements.currentMovementKind = null
 Movements.currentClient = null
-# Movements.lastClientsSearch = {}
 
 Movements.showSwalError = (msg) ->
   swal(
@@ -13,34 +12,6 @@ Movements.showSwalError = (msg) ->
     allowOutsideClick: true
     allowEscapeKey: true
   )
-
-# Movements.chooseClient = (clients) ->
-#   options = {}
-#   for client in clients
-#     Movements.lastClientsSearch[client.id] = client
-#     options[client.id] = "#{client.label} - #{client.identifier}"
-#
-#   swal(
-#     title: 'Multiples clientes coinciden'
-#     input: 'select'
-#     inputOptions: options
-#   ).then((result) ->
-#     if result && result.value
-#       Movements.askForAmount( Movements.lastClientsSearch[result.value] )
-#   )
-
-# Movements.processClientResult = (result) ->
-#   if result.value == undefined
-#     return
-#
-#   if result.value.length == 1
-#     Movements.askForAmount(result.value[0])
-#
-#   else if result.value.length > 1
-#     Movements.chooseClient(result.value)
-#
-#   else
-#     Movements.showSwalError('No se encontraron clientes')
 
 Movements.askForAmount = (client) ->
   Movements.currentClient = client
@@ -88,22 +59,11 @@ Movements.createMovementForClient = (client, amount) ->
         allowOutsideClick: true
         allowEscapeKey: true
       )
+      Movements.currentMovementKind = null
+      Movements.currentClient = null
       $("##{response.id}").replaceWith(response.row)
     error: Movements.showSwalError
   )
-
-# Movements.searchClient = (query) ->
-#   if query.length == 0
-#     return []
-#
-#   $.get(
-#     url: '/clients'
-#     data: { q: query }
-#     dataType: 'json'
-#     success: (response) ->
-#       response
-#     error: Movements.showSwalError
-#   )
 
 $(document).on 'click', '[data-add-movement-to-client]', (e) ->
   e.preventDefault()
@@ -112,24 +72,7 @@ $(document).on 'click', '[data-add-movement-to-client]', (e) ->
   link = $(e.currentTarget)
 
   Movements.currentMovementKind = link.data('add-movement-to-client')
-
   Movements.askForAmount(link.data('client'))
-
-  # swal(
-  #   width: '500px'
-  #   html: '<h3>Pase la tarjeta<br />Escriba una identificación o nombre</h3>'
-  #   input: 'text'
-  #   inputAttributes: {
-  #     autocapitalize: 'off'
-  #   }
-  #   showCancelButton: false
-  #   showCloseButton: true
-  #   confirmButtonText: 'Buscar'
-  #   showLoaderOnConfirm: true
-  #   preConfirm: Movements.searchClient
-  #   allowEscapeKey: -> !swal.isLoading()
-  #   allowOutsideClick: -> !swal.isLoading()
-  # ).then(Movements.processClientResult)
 
 $(document).on 'change keyup', '.movement-amount-field', (e) ->
   fieldAmount = parseFloat($(e.currentTarget).val() || Movements.currentClient.amount)
