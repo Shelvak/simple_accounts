@@ -8,8 +8,13 @@
       <div class="col-md-2">
         <%= submit_tag 'Buscar cliente', class: 'btn btn-warning' %>
       </div>
+
+      <%= link_to(
+        t('view.clients.new', default: :'label.new'),
+        new_client_path, class: 'btn btn-primary pull-right'
+      ) if can? :create, Client %>
     </div>
-<% end %>
+  <% end %>
 </div>
 
 <% if @clients.empty? %>
@@ -32,10 +37,3 @@
 
   <%= paginate @clients %>
 <% end %>
-
-<div class="panel-footer">
-  <%= link_to(
-    t('view.clients.new', default: :'label.new'),
-    new_client_path, class: 'btn btn-primary'
-  ) if can? :create, Client %>
-</div>
