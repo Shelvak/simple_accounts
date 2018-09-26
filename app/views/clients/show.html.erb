@@ -30,5 +30,14 @@
     ) if can? :destroy, @client %>
   </div>
 
-  <%= link_to Movement.model_name.human(count: 0), movements_path(client_id: @client.id), class: 'btn btn-info' %>
+  <%= link_to Movement.model_name.human(count: 0), movements_path(client_id: @client.id), class: 'btn btn-info' %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to 'Sumar saldo',
+    '',
+    class: 'btn btn-primary',
+    data: { add_movement_to_client: 'credit', client: @client.to_json } %> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to 'Restar saldo',
+    '',
+    class: 'btn btn-danger',
+    data: { add_movement_to_client: 'debit', client: @client.to_json } %>
+
 </div>
