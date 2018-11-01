@@ -11,13 +11,13 @@ WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
 
+ENV RAILS_ENV production
+
 RUN bundle install --deployment --jobs 5 && apk del build-dependencies
 
 ADD . ./
 
 RUN npm config set unsafe-perm true && npm install yarn -g && yarn install
-
-RUN bundle exec rails assets:precompile
 
 EXPOSE 3000
 
